@@ -9,11 +9,26 @@ export const bookApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllBook: builder.query({
-      query: () => `photos`,
+      query: () => `posts`,
+    }),
+
+    getBookId: builder.query({
+      query: (id: string) => {
+        return `posts/${id}`;
+      },
+    }),
+
+    createBook: builder.mutation({
+      query: (newBook) => ({
+        url: `posts`,
+        method: "POST",
+        body: newBook,
+      }),
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllBookQuery } = bookApi;
+export const { useGetAllBookQuery, useGetBookIdQuery, useCreateBookMutation } =
+  bookApi;
