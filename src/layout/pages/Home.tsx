@@ -1,13 +1,13 @@
-import { Outlet } from "react-router";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-
 const Home = () => {
   return (
-    <div className="" style={{ fontFamily: "JetBrains Mono" }}>
-      <Navbar />
-      <Outlet />
-      <Footer />
+    <div>
+      <h1 className="text-2xl font-bold text-center mt-10">
+        Welcome to the Home Page
+      </h1>
+      <p className="text-center mt-4">
+        This is where you can find the latest updates and features.
+      </p>
+      {/* Add more content here as needed */}
     </div>
   );
 };
