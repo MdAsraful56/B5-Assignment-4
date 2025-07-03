@@ -11,6 +11,16 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 // Title, Author, Genre, ISBN, Copies, Availability;
 
@@ -41,11 +51,54 @@ export function AddBook() {
                   />
                 </div>
                 <div className="grid gap-3">
+                  <Label htmlFor="author">Author</Label>
+                  <Input
+                    id="author"
+                    name="author"
+                    placeholder="Enter Author Name"
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter your book Description"
+                  />
+                </div>
+                <div className="grid gap-3">
                   <Label htmlFor="isbn">ISBN</Label>
                   <Input
                     id="isbn"
                     name="isbn"
                     placeholder="Enter ISBN Number"
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="isbn">Genre</Label>
+                  <Select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select a genre " />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Genre</SelectLabel>
+                        <SelectItem value="apple">FICTION</SelectItem>
+                        <SelectItem value="apple">NON_FICTION</SelectItem>
+                        <SelectItem value="banana">SCIENCE</SelectItem>
+                        <SelectItem value="blueberry">HISTORY</SelectItem>
+                        <SelectItem value="grapes">BIOGRAPHY</SelectItem>
+                        <SelectItem value="pineapple">FANTASY</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="copies">Copies</Label>
+                  <Input
+                    id="copies"
+                    name="copies"
+                    placeholder="Enter Copies Number"
                   />
                 </div>
               </div>
