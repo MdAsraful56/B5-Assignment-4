@@ -26,7 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export function AddBook() {
   return (
-    <div className="items-center justify-center h-screen">
+    <div className="items-center justify-center">
       <div className=""></div>
       <div className="text-center mt-20">
         <Dialog>
@@ -64,6 +64,15 @@ export function AddBook() {
                     id="description"
                     name="description"
                     placeholder="Enter your book Description"
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="img">Image Url</Label>
+                  <Input
+                    id="img"
+                    name="img"
+                    placeholder="Enter Image Url"
+                    type="url"
                   />
                 </div>
                 <div className="grid gap-3">

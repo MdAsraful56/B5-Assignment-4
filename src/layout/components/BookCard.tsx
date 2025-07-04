@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const BookCard = () => {
   const books = [
     {
@@ -119,10 +121,6 @@ const BookCard = () => {
               className="items-center justify-center mx-auto mb-4 rounded"
             />
             <h2 className="text-xl font-semibold text-red-700">{book.title}</h2>
-            <p className="text-gray-700">Author: {book.author}</p>
-            <p className="text-gray-600">Genre: {book.genre}</p>
-            <p className="text-gray-600">ISBN: {book.isbn}</p>
-            <p className="text-gray-500">{book.description}</p>
             <p
               className={`mt-2 ${
                 book.available ? "text-green-600" : "text-red-600"
@@ -131,6 +129,19 @@ const BookCard = () => {
               {book.available ? "Available" : "Not Available"}
             </p>
             <p className="mt-1">Copies: {book.copies}</p>
+            <div className=" ">
+              <div className="space-x-2">
+                <Button>Edit </Button>
+                <Button>Update </Button>
+                <Button>View </Button>
+                <Button>Deleted </Button>
+              </div>
+              <div className="">
+                <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Borrow
+                </Button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
