@@ -23,7 +23,7 @@ const Navbar = () => {
           <Link to="/create-book" className="hover:text-gray-300 transition">
             Add Book
           </Link>
-          <Link to="/" className="hover:text-gray-300 transition">
+          <Link to="/borrowSummary" className="hover:text-gray-300 transition">
             Borrow Summary
           </Link>
           <ModeToggle />
