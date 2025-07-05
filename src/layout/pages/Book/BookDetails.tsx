@@ -5,11 +5,13 @@ import { useParams } from "react-router";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetBookIdQuery(id!);
+  const { data, isError, isLoading } = useGetBookIdQuery(id as string);
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
-  if (isError || !data)
+  if (isError || !data?.data)
     return <p className="text-center mt-10 text-red-500">Book not found.</p>;
+
+  const book = data.data;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -17,23 +19,23 @@ const BookDetails = () => {
         {/* Book Image */}
         <div className="bg-gray-100 p-4 rounded-lg">
           <img
-            src={data.image}
-            alt={data.title}
+            src={book.image}
+            alt={book.title}
             className="w-full h-[400px] object-contain rounded"
           />
         </div>
 
         {/* Book Info */}
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold text-gray-800">{data.title}</h1>
-          <p className="text-lg text-gray-600">by {data.author}</p>
+          <h1 className="text-3xl font-bold text-gray-800">{book.title}</h1>
+          <p className="text-lg text-gray-600">by {book.author}</p>
 
           <span className="inline-block px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-full">
-            {data.genre}
+            {book.genre}
           </span>
 
           <div className="flex items-center gap-2 text-sm mt-2">
-            {data.available ? (
+            {book.available ? (
               <span className="flex items-center text-green-600 font-medium">
                 <BadgeCheck size={18} className="mr-1" /> Available
               </span>
@@ -45,15 +47,15 @@ const BookDetails = () => {
           </div>
 
           <p className="text-gray-700 text-sm leading-relaxed">
-            {data.description}
+            {book.description}
           </p>
 
           <div className="text-sm text-gray-500">
             <p>
-              <strong>ISBN:</strong> {data.isbn}
+              <strong>ISBN:</strong> {book.isbn}
             </p>
             <p>
-              <strong>Copies:</strong> {data.copies}
+              <strong>Copies:</strong> {book.copies}
             </p>
           </div>
 

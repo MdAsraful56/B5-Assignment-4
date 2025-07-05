@@ -25,10 +25,28 @@ export const bookApi = createApi({
         body: newBook,
       }),
     }),
+
+    updateBook: builder.mutation({
+      query: ({ id, ...updatedBook }) => ({
+        url: `/books/${id}`,
+        method: "PUT",
+        body: updatedBook,
+      }),
+    }),
+
+    deleteBook: builder.mutation({
+      query: (id: string) => ({
+        url: `/books/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetAllBookQuery, useGetBookIdQuery, useCreateBookMutation } =
-  bookApi;
+export const {
+  useGetAllBookQuery,
+  useGetBookIdQuery,
+  useCreateBookMutation,
+  useUpdateBookMutation,
+  useDeleteBookMutation,
+} = bookApi;

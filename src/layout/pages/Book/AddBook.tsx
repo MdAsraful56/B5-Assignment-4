@@ -26,6 +26,7 @@ import type { IBook } from "@/typescript/Types";
 
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 export function AddBook() {
@@ -53,11 +54,13 @@ export function AddBook() {
       .unwrap()
       .then((response) => {
         console.log("Book added successfully:", response);
+        toast.success("Book added successfully!");
         refetch(); // Refetch the book list to update the UI
         navigate("/all-books"); // Navigate to the books page after adding
       })
       .catch((error) => {
         console.error("Failed to add book:", error);
+        toast.error("Failed to add book. Please try again.");
       });
     reset();
   };

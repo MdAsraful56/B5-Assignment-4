@@ -3,18 +3,50 @@ import deleteIcon from "@/assets/Icons/delete.png";
 import updateIcon from "@/assets/Icons/update.png";
 import viewIcon from "@/assets/Icons/view.png";
 import { Button } from "@/components/ui/button";
+import {
+  useDeleteBookMutation,
+  useGetAllBookQuery,
+  useUpdateBookMutation,
+} from "@/redux/api/books";
 import type { IBook } from "@/typescript/Types";
 import { BadgeCheck, BookOpen } from "lucide-react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 const BookCard = ({ book }: { book: IBook }) => {
   const { _id, title, author, image, genre, copies, available } = book;
+  const [updateBook] = useUpdateBookMutation();
+  const [deleteBook] = useDeleteBookMutation();
+  const { refetch } = useGetAllBookQuery(undefined);
   const navigate = useNavigate();
 
+  // book view
   const handleView = (id: string) => {
     // Logic to handle view action, e.g., navigate to book details page
     console.log(`Viewing book with ID: ${id}`);
     navigate(`/all-books/${id}`);
+  };
+
+  // book updated
+  const handleUpdate = (id: string) => {
+    // Logic to handle update action, e.g., navigate to update book page
+    console.log(`Updating book with ID: ${id},`, updateBook);
+    navigate(`/update-book/${id}`);
+  };
+
+  // book deleted
+  const handleDelete = (id: string) => {
+    deleteBook(id)
+      .unwrap()
+      .then(() => {
+        console.log("Book deleted successfully");
+        toast.success("Book deleted successfully!");
+        refetch();
+      })
+      .catch((error: unknown) => {
+        console.error("Failed to delete book:", error);
+        toast.error("Failed to delete book. Please try again.");
+      });
   };
 
   return (
@@ -56,11 +88,15 @@ const BookCard = ({ book }: { book: IBook }) => {
               <img src={viewIcon} alt="view" className="h-4 w-4" />
               View
             </Button>
-            <Button className="flex items-center gap-1 px-2 py-1 text-xs h-auto">
+            <Button
+              onClick={() => _id && handleUpdate(_id)}
+              className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
+            >
               <img src={updateIcon} alt="update" className="h-4 w-4" />
               Update
             </Button>
             <Button
+              onClick={() => _id && handleDelete(_id)}
               variant="destructive"
               className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
             >

@@ -3,6 +3,7 @@ import { AddBook } from "@/layout/pages/Book/AddBook.tsx";
 import AllBooks from "@/layout/pages/Book/AllBooks.tsx";
 import BookDetails from "@/layout/pages/Book/BookDetails.tsx";
 import { BorrowSummary } from "@/layout/pages/BorrowSummary.tsx";
+import NotFoundPage from "@/layout/pages/NotFoundPage.tsx";
 import { createBrowserRouter } from "react-router";
 import Home from "../layout/pages/Home.tsx";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/borrowSummary",
         Component: BorrowSummary,
+      },
+      {
+        path: "*",
+        Component: NotFoundPage,
       },
     ],
   },
