@@ -30,13 +30,10 @@ import {
 } from "@/redux/api/borrow";
 
 import type { IBook } from "@/typescript/Types";
-import UpdateBookModal from "../model/UpdateBookModal";
-
-// import UpdateBookModal from "@/components/UpdateBookModal";
 
 const BookCard = ({ book }: { book: IBook }) => {
   const { _id, title, author, image, genre, copies, available } = book;
-  const [openUpdate, setOpenUpdate] = useState(false);
+
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState<Date | undefined>(undefined);
 
@@ -53,10 +50,10 @@ const BookCard = ({ book }: { book: IBook }) => {
     navigate(`/books/${id}`);
   };
 
-  // const handleUpdate = (id: string) => {
-  //   console.log(`Updating book with ID: ${id}`);
-  //   navigate(`/edit-book/${id}`);
-  // };
+  const handleUpdate = (id: string) => {
+    console.log(`Updating book with ID: ${id}`);
+    navigate(`/edit-book/${id}`);
+  };
 
   const handleDelete = (id: string) => {
     deleteBook(id)
@@ -131,34 +128,13 @@ const BookCard = ({ book }: { book: IBook }) => {
               <img src={viewIcon} alt="view" className="h-4 w-4" />
               View
             </Button>
-            {/* <Button
+            <Button
               onClick={() => _id && handleUpdate(_id)}
               className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
             >
               <img src={updateIcon} alt="update" className="h-4 w-4" />
               Update
-            </Button> */}
-
-            <Dialog open={openUpdate} onOpenChange={setOpenUpdate}>
-              <DialogTrigger asChild>
-                <Button
-                  onClick={() => setOpenUpdate(true)}
-                  className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
-                >
-                  <img src={updateIcon} alt="update" className="h-4 w-4" />
-                  Update
-                </Button>
-              </DialogTrigger>
-
-              {_id && (
-                <UpdateBookModal
-                  book={book}
-                  refetch={refetch}
-                  onClose={() => setOpenUpdate(false)}
-                />
-              )}
-            </Dialog>
-
+            </Button>
             <Button
               onClick={() => _id && handleDelete(_id)}
               variant="destructive"

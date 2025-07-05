@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className="bg-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-lg font-semibold">My Application</h1>
+        <h1 className="text-lg font-semibold">My Library</h1>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 items-center">

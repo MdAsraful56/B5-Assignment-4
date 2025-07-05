@@ -8,8 +8,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Site Info */}
         <div className="text-center md:text-left">
-          <h1 className="text-xl font-semibold text-white">My Application</h1>
+          <h1 className="text-xl font-semibold text-white">My Library</h1>
           <p className="text-sm">Your go-to solution for managing books.</p>
+          <div className="">
+            <p className="">+8801889245756</p>
+            <p className=""></p>
+          </div>
         </div>
 
         {/* Social Media Icons */}
@@ -40,7 +44,7 @@ const Footer = () => {
 
       {/* Bottom Credits */}
       <div className="mt-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} My Application. All rights reserved.
+        © {new Date().getFullYear()} My Library. All rights reserved.
       </div>
     </footer>
   );

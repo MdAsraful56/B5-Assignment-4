@@ -1,69 +1,97 @@
-# React + TypeScript + Vite
+# 📘 My Minimal Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hi! I'm [Md Asraful], and this is a project I built entirely from scratch using **React**, **Redux Toolkit Query**, **TypeScript**, and **Tailwind CSS**. The goal was to create a minimal but complete **Library Management System** — focused on core features like viewing books, borrowing, and basic CRUD.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Why I Built This
 
-## Expanding the ESLint configuration
+While learning RTK Query and state management, I wanted a real-world use-case. So I thought:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> "Why not a small library system? Everyone loves books!"
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This project helped me:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Understand **client-side state/data caching**
+- Work with **form handling** and **React Router**
+- Apply **TypeScript** for safe API integration
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Features I Implemented
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ✅ View All Books
+- ✅ Add, Edit, and Delete Books
+- ✅ Borrow a Book (with quantity and due date)
+- ✅ View Borrow Summary
+- ✅ Toast Notifications for UX feedback
+- ✅ Fully Responsive UI with Tailwind
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🛠️ Tech Stack I Used
+
+| Layer            | Tech                                 |
+| ---------------- | ------------------------------------ |
+| Frontend         | React + TypeScript                   |
+| State Management | Redux Toolkit Query                  |
+| Backend          | Node.js + Express.js (already built) |
+| Database         | MongoDB                              |
+| UI               | Tailwind CSS + Custom Icons          |
+
+---
+
+## 📄 Key Pages in App
+
+| Path              | Description                                       |
+| ----------------- | ------------------------------------------------- |
+| `/books`          | All books with View, Edit, Delete, Borrow buttons |
+| `/books/:id`      | Book details page                                 |
+| `/create-book`    | Add new book                                      |
+| `/edit-book/:id`  | Edit existing book                                |
+| `/borrow-summary` | Aggregated borrowed books info                    |
+
+---
+
+## 🧠 What I Learned
+
+- Building custom dialogs with forms (Borrow & Edit)
+- Conditional rendering with real-time feedback
+- Dynamic routing using `useParams` + `RTK Query`
+- Real-world application of Redux Toolkit + Type Safety
+
+---
+
+## 🌍 Live Site
+
+> [🔗 Your Live URL here]
+
+---
+
+## 📁 Backend Repo (Optional)
+
+> [🛠 Backend GitHub Link]
+
+---
+
+## 🤝 Special Thanks
+
+Thanks to [any mentor/course name] and the community for pushing me to complete this project with real effort.
+
+---
+
+## 🙋‍♂️ Want to Learn More?
+
+This is just a start! I'm working on adding:
+
+- Pagination
+- Auth (Admin Only)
+- Search and Filters
+
+---
+
+## 📧 Contact Me
+
+Feel free to connect if you'd like to collaborate or give feedback!
+
+> [Your email] • [GitHub] • [LinkedIn]

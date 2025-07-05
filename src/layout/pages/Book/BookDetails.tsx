@@ -1,5 +1,6 @@
 import borrowIcon from "@/assets/Icons/borrow-book.png";
 import deleteIcon from "@/assets/Icons/delete.png";
+import updateIcon from "@/assets/Icons/update.png";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -26,7 +27,6 @@ import { BadgeCheck, BookOpen } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
-// import updateIcon from "@/assets/Icons/update.png";
 
 const BookDetails = () => {
   const [deleteBook] = useDeleteBookMutation();
@@ -137,23 +137,25 @@ const BookDetails = () => {
           </div>
 
           <div className="pt-4">
-            <Button onClick={() => window.history.back()}> ← Go Back</Button>
-            <div className="flex justify-between gap-1">
-              {/* <Button
-                onClick={() => _id && handleUpdate(_id)}
-                className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
-              >
-                <img src={updateIcon} alt="update" className="h-4 w-4" />
-                Update
-              </Button> */}
-              <Button
-                onClick={() => id && handleDelete(id)}
-                variant="destructive"
-                className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
-              >
-                <img src={deleteIcon} alt="delete" className="h-4 w-4" />
-                Delete
-              </Button>
+            <div className="">
+              <div className="flex justify-around gap-1 mb-4">
+                <Button onClick={() => window.history.back()}>
+                  {" "}
+                  ← Go Back
+                </Button>
+                <Button className="flex items-center gap-1 px-2 py-1 text-xs h-auto">
+                  <img src={updateIcon} alt="update" className="h-4 w-4" />
+                  Update
+                </Button>
+                <Button
+                  onClick={() => id && handleDelete(id)}
+                  variant="destructive"
+                  className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
+                >
+                  <img src={deleteIcon} alt="delete" className="h-4 w-4" />
+                  Delete
+                </Button>
+              </div>
 
               {/* Borrow Button & Dialog */}
               <Dialog>
