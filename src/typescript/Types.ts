@@ -1,8 +1,8 @@
 // types/book.d.ts or types.ts
-export interface Book {
+export interface IBook {
   title: string;
   author: string;
-  img: string;
+  image: string;
   genre:
     | "FICTION"
     | "NON_FICTION"

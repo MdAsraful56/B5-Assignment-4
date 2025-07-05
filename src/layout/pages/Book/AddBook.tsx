@@ -21,11 +21,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import type { Book } from "@/typescript/Types";
+import { useCreateBookMutation } from "@/redux/api/books";
+import type { IBook } from "@/typescript/Types";
+
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 export function AddBook() {
+  const [createBook] = useCreateBookMutation();
   const [open, setOpen] = useState(false);
   const {
     register: addBook,
@@ -33,11 +36,23 @@ export function AddBook() {
     reset,
     control,
     formState: { errors },
-  } = useForm<Book>();
+  } = useForm<IBook>();
 
-  const onSubmit = (data: Book) => {
+  const onSubmit = (data: IBook) => {
     console.log("Form Data:", data);
     setOpen(false);
+    const newBook: IBook = {
+      ...data,
+      available: true, // Default value for available
+    };
+    createBook(newBook)
+      .unwrap()
+      .then((response) => {
+        console.log("Book added successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Failed to add book:", error);
+      });
     reset();
   };
 
@@ -111,14 +126,16 @@ export function AddBook() {
 
                 {/* Image URL */}
                 <div className="grid gap-2">
-                  <Label htmlFor="img">Image Url</Label>
+                  <Label htmlFor="image">Image Url</Label>
                   <Input
-                    id="img"
+                    id="image"
                     type="url"
-                    {...addBook("img", { required: "Image URL is required" })}
+                    {...addBook("image", { required: "Image URL is required" })}
                   />
-                  {errors.img && (
-                    <p className="text-sm text-red-500">{errors.img.message}</p>
+                  {errors.image && (
+                    <p className="text-sm text-red-500">
+                      {errors.image.message}
+                    </p>
                   )}
                 </div>
 
