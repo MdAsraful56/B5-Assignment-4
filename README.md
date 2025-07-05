@@ -1,6 +1,6 @@
 # 📘 My Minimal Library Management System
 
-Hi! I'm [Md Asraful], and this is a project I built entirely from scratch using **React**, **Redux Toolkit Query**, **TypeScript**, and **Tailwind CSS**. The goal was to create a minimal but complete **Library Management System** — focused on core features like viewing books, borrowing, and basic CRUD.
+Hi! I'm Md Asraful, and this is a project I built entirely from scratch using **React**, **Redux Toolkit Query**, **TypeScript**, and **Tailwind CSS**. The goal was to create a minimal but complete **Library Management System** — focused on core features like viewing books, borrowing, and basic CRUD.
 
 ---
 
@@ -79,19 +79,3 @@ This project helped me:
 Thanks to [any mentor/course name] and the community for pushing me to complete this project with real effort.
 
 ---
-
-## 🙋‍♂️ Want to Learn More?
-
-This is just a start! I'm working on adding:
-
-- Pagination
-- Auth (Admin Only)
-- Search and Filters
-
----
-
-## 📧 Contact Me
-
-Feel free to connect if you'd like to collaborate or give feedback!
-
-> [Your email] • [GitHub] • [LinkedIn]

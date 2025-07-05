@@ -157,6 +157,7 @@ const BookDetails = () => {
                 </Button>
               </div>
 
+              {/* Copy to other components  */}
               {/* Borrow Button & Dialog */}
               <Dialog>
                 <DialogTrigger asChild>
