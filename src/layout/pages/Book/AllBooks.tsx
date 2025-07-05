@@ -6,14 +6,14 @@ import BookCard from "../../components/BookCard";
 const AllBooks = () => {
   const { data, isLoading } = useGetAllBookQuery(undefined);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="text-center my-3">Loading...</div>;
   }
 
   if (!data || data.length === 0) {
-    return <div>No books available.</div>;
+    return <div className="text-center my-3">No books available.</div>;
   }
 
-  console.log(data?.data);
+  // console.log(data?.data);
 
   const books = data?.data;
 

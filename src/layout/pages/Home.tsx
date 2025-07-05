@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useGetAllBookQuery } from "@/redux/api/books";
 import type { IBook } from "@/typescript/Types";
 import { Link } from "react-router";
-import accordionCover from "../../assets/Cover/cover (7).jpg";
+import accordionCover from "../../assets/Cover/cover (6).jpg";
 import { AccordionCard } from "../components/AccordionCard";
 import { BannerCarousel } from "../components/BannerCarousel";
 import BookCard from "../components/BookCard";
@@ -49,7 +49,7 @@ const Home = () => {
               literature to modern bestsellers, find your next great read.
             </p>
           </div>
-          <div className=" max-w-7xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className=" max-w-7xl mx-auto p-4 justify-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {books.map((book: IBook, index: number) => (
               <BookCard key={index} book={book} />
             ))}
@@ -61,9 +61,9 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row gap-3 items-center justify-between max-w-7xl mx-auto px-4 py-8">
           <div className="">
-            <img src={accordionCover} alt="" className="" />
+            <img src={accordionCover} alt="" className="rounded-xl" />
           </div>
           <div className="">
             <AccordionCard />

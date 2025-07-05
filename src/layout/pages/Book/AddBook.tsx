@@ -66,7 +66,7 @@ export function AddBook() {
   };
 
   return (
-    <div className="mb-40 mt-10">
+    <div className="mt-10 h-screen">
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-2xl font-bold mb-4">Add New Book</h1>
         <p className="text-gray-600 mb-6">
