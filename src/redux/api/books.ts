@@ -12,11 +12,11 @@ export const bookApi = createApi({
       query: () => `/books`,
     }),
 
-    // getBookId: builder.query({
-    //   query: (id: string) => {
-    //     return `/posts/${id}`;
-    //   },
-    // }),
+    getBookId: builder.query({
+      query: (id: string) => {
+        return `/books/${id}`;
+      },
+    }),
 
     createBook: builder.mutation({
       query: (newBook) => ({
@@ -30,4 +30,5 @@ export const bookApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllBookQuery, useCreateBookMutation } = bookApi;
+export const { useGetAllBookQuery, useGetBookIdQuery, useCreateBookMutation } =
+  bookApi;

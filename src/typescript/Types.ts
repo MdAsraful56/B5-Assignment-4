@@ -1,5 +1,6 @@
 // types/book.d.ts or types.ts
 export interface IBook {
+  _id?: string;
   title: string;
   author: string;
   image: string;

@@ -5,9 +5,17 @@ import viewIcon from "@/assets/Icons/view.png";
 import { Button } from "@/components/ui/button";
 import type { IBook } from "@/typescript/Types";
 import { BadgeCheck, BookOpen } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const BookCard = ({ book }: { book: IBook }) => {
-  const { title, author, image, genre, copies, available } = book;
+  const { _id, title, author, image, genre, copies, available } = book;
+  const navagite = useNavigate();
+
+  const handleView = (id: string) => {
+    // Logic to handle view action, e.g., navigate to book details page
+    console.log(`Viewing book with ID: ${id}`);
+    navagite(`/all-books/${id}`);
+  };
 
   return (
     <div className="rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden w-[260px] border border-gray-200 bg-white">
@@ -41,7 +49,10 @@ const BookCard = ({ book }: { book: IBook }) => {
         <div className="space-y-2 pt-2">
           {/* Top buttons */}
           <div className="flex justify-between gap-1">
-            <Button className="flex items-center gap-1 px-2 py-1 text-xs h-auto">
+            <Button
+              onClick={() => _id && handleView(_id)}
+              className="flex items-center gap-1 px-2 py-1 text-xs h-auto"
+            >
               <img src={viewIcon} alt="view" className="h-4 w-4" />
               View
             </Button>
