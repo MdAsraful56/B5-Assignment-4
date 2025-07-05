@@ -9,12 +9,12 @@ import { useNavigate } from "react-router";
 
 const BookCard = ({ book }: { book: IBook }) => {
   const { _id, title, author, image, genre, copies, available } = book;
-  const navagite = useNavigate();
+  const navigate = useNavigate();
 
   const handleView = (id: string) => {
     // Logic to handle view action, e.g., navigate to book details page
     console.log(`Viewing book with ID: ${id}`);
-    navagite(`/all-books/${id}`);
+    navigate(`/all-books/${id}`);
   };
 
   return (

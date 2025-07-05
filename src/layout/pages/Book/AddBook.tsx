@@ -21,15 +21,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useCreateBookMutation } from "@/redux/api/books";
+import { useCreateBookMutation, useGetAllBookQuery } from "@/redux/api/books";
 import type { IBook } from "@/typescript/Types";
 
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 export function AddBook() {
   const [createBook] = useCreateBookMutation();
   const [open, setOpen] = useState(false);
+  const { refetch } = useGetAllBookQuery(undefined);
+  const navigate = useNavigate();
+
   const {
     register: addBook,
     handleSubmit,
@@ -49,6 +53,8 @@ export function AddBook() {
       .unwrap()
       .then((response) => {
         console.log("Book added successfully:", response);
+        refetch(); // Refetch the book list to update the UI
+        navigate("/all-books"); // Navigate to the books page after adding
       })
       .catch((error) => {
         console.error("Failed to add book:", error);
@@ -57,7 +63,7 @@ export function AddBook() {
   };
 
   return (
-    <div className="mb-40">
+    <div className="mb-40 mt-10">
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-2xl font-bold mb-4">Add New Book</h1>
         <p className="text-gray-600 mb-6">

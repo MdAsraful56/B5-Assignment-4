@@ -32,6 +32,13 @@ const Home = () => {
             resources. Join us in fostering a love for reading and learning.
           </p>
         </div>
+        <div className="flex items-center justify-center mt-8">
+          <Link to={"/create-book"}>
+            <Button className="bg-blue-600 text-white hover:bg-blue-700">
+              Add New Book
+            </Button>
+          </Link>
+        </div>
         <div className="">
           <div className="">
             <h2 className="text-2xl md:text-3xl font-semibold text-center mt-8">
