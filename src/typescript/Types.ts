@@ -2,6 +2,7 @@
 export interface Book {
   title: string;
   author: string;
+  img: string;
   genre:
     | "FICTION"
     | "NON_FICTION"
