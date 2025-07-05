@@ -1,4 +1,3 @@
-// types/book.d.ts or types.ts
 export interface IBook {
   _id?: string;
   title: string;
@@ -15,4 +14,12 @@ export interface IBook {
   description?: string;
   copies: number;
   available: boolean;
+}
+
+export interface IBorrowSummary {
+  totalQuantity: number;
+  book: {
+    title: string;
+    isbn: string;
+  };
 }

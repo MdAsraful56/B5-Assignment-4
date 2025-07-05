@@ -8,7 +8,7 @@ function App() {
     <div className="">
       <div className="" style={{ fontFamily: "JetBrains Mono" }}>
         <Navbar />
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto max-h-screen">
           <Outlet />
         </div>
         <Footer />
