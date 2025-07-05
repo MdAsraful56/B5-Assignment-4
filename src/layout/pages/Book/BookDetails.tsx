@@ -9,7 +9,9 @@ const BookDetails = () => {
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
   if (isError || !data?.data)
-    return <p className="text-center mt-10 text-red-500">Book not found.</p>;
+    return (
+      <p className="text-center mt-10 text-red-500">Book not found......</p>
+    );
 
   const book = data.data;
 

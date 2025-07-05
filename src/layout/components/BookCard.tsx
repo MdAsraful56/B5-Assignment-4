@@ -1,52 +1,92 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+import { BadgeCheck, BookOpen } from "lucide-react";
+
 import borrowIcon from "@/assets/Icons/borrow-book.png";
 import deleteIcon from "@/assets/Icons/delete.png";
 import updateIcon from "@/assets/Icons/update.png";
 import viewIcon from "@/assets/Icons/view.png";
-import { Button } from "@/components/ui/button";
+
+import { useDeleteBookMutation, useGetAllBookQuery } from "@/redux/api/books";
 import {
-  useDeleteBookMutation,
-  useGetAllBookQuery,
-  useUpdateBookMutation,
-} from "@/redux/api/books";
+  useCreateBorrowMutation,
+  useGetAllBorrowQuery,
+} from "@/redux/api/borrow";
+
 import type { IBook } from "@/typescript/Types";
-import { BadgeCheck, BookOpen } from "lucide-react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
 
 const BookCard = ({ book }: { book: IBook }) => {
   const { _id, title, author, image, genre, copies, available } = book;
-  const [updateBook] = useUpdateBookMutation();
+
+  const [quantity, setQuantity] = useState(1);
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
   const [deleteBook] = useDeleteBookMutation();
   const { refetch } = useGetAllBookQuery(undefined);
+
+  const [createBorrow] = useCreateBorrowMutation();
+  const { refetch: borrowRefetch } = useGetAllBorrowQuery(undefined);
+
   const navigate = useNavigate();
 
-  // book view
   const handleView = (id: string) => {
-    // Logic to handle view action, e.g., navigate to book details page
     console.log(`Viewing book with ID: ${id}`);
-    navigate(`/all-books/${id}`);
+    navigate(`/books/${id}`);
   };
 
-  // book updated
   const handleUpdate = (id: string) => {
-    // Logic to handle update action, e.g., navigate to update book page
-    console.log(`Updating book with ID: ${id},`, updateBook);
-    navigate(`/update-book/${id}`);
+    console.log(`Updating book with ID: ${id}`);
+    navigate(`/edit-book/${id}`);
   };
 
-  // book deleted
   const handleDelete = (id: string) => {
     deleteBook(id)
       .unwrap()
       .then(() => {
-        console.log("Book deleted successfully");
         toast.success("Book deleted successfully!");
         refetch();
       })
-      .catch((error: unknown) => {
-        console.error("Failed to delete book:", error);
-        toast.error("Failed to delete book. Please try again.");
-      });
+      .catch(() => toast.error("Failed to delete book"));
+  };
+
+  const handleBorrowBook = async (id: string) => {
+    if (!date) {
+      toast.error("Please select a due date");
+      return;
+    }
+
+    const borrowData = {
+      book: id,
+      quantity,
+      dueDate: date,
+    };
+
+    try {
+      await createBorrow(borrowData).unwrap();
+      toast.success("Book borrowed successfully");
+      refetch();
+      borrowRefetch();
+      navigate("/borrow-summary");
+    } catch (error) {
+      const err = error as { data?: { message?: string } };
+      toast.error(err.data?.message || "Something went wrong");
+    }
   };
 
   return (
@@ -78,8 +118,8 @@ const BookCard = ({ book }: { book: IBook }) => {
           </span>
         </div>
 
+        {/* Action buttons */}
         <div className="space-y-2 pt-2">
-          {/* Top buttons */}
           <div className="flex justify-between gap-1">
             <Button
               onClick={() => _id && handleView(_id)}
@@ -105,13 +145,65 @@ const BookCard = ({ book }: { book: IBook }) => {
             </Button>
           </div>
 
-          {/* Borrow button */}
-          <div className="flex justify-center">
-            <Button className="flex items-center gap-1 px-3 py-1 text-xs h-auto">
-              <img src={borrowIcon} alt="borrow" className="h-5 w-5" />
-              <span className="text-blue-600 font-medium">Borrow</span>
-            </Button>
-          </div>
+          {/* Borrow Button & Dialog */}
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="flex items-center gap-1 px-3 py-1 text-xs h-auto w-full">
+                <img src={borrowIcon} alt="borrow" className="h-5 w-5" />
+                <span className="text-blue-600 font-medium">Borrow</span>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[300px]">
+              <form
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                  e.preventDefault();
+                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                  _id && handleBorrowBook(_id);
+                }}
+              >
+                <DialogTitle>Borrow Books</DialogTitle>
+                <DialogDescription className="mb-4">
+                  Enter quantity and due date.
+                </DialogDescription>
+
+                <div className="grid gap-4">
+                  <div className="grid gap-2">
+                    <Label>Quantity</Label>
+                    <Input
+                      type="number"
+                      value={quantity}
+                      min={1}
+                      onChange={(e) => setQuantity(Number(e.target.value))}
+                    />
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label>Due Date</Label>
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      className="rounded-md border"
+                    />
+                  </div>
+                </div>
+
+                <DialogFooter className="pt-4">
+                  <DialogClose asChild>
+                    <Button variant="outline" type="button">
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <Button
+                    type="submit"
+                    className="bg-sky-500 hover:bg-sky-600 text-white"
+                  >
+                    Borrow Book
+                  </Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>

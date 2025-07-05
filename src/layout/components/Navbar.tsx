@@ -17,13 +17,13 @@ const Navbar = () => {
           <Link to="/" className="hover:text-gray-300 transition">
             Home
           </Link>
-          <Link to="/all-books" className="hover:text-gray-300 transition">
+          <Link to="/books" className="hover:text-gray-300 transition">
             All Books
           </Link>
           <Link to="/create-book" className="hover:text-gray-300 transition">
             Add Book
           </Link>
-          <Link to="/borrowSummary" className="hover:text-gray-300 transition">
+          <Link to="/borrow-summary" className="hover:text-gray-300 transition">
             Borrow Summary
           </Link>
           <ModeToggle />
@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/" className="block hover:text-gray-300">
             Home
           </Link>
-          <Link to="/all-books" className="block hover:text-gray-300">
+          <Link to="/books" className="block hover:text-gray-300">
             All Books
           </Link>
           <Link to="/" className="block hover:text-gray-300">

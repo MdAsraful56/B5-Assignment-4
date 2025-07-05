@@ -55,7 +55,7 @@ const Home = () => {
             ))}
           </div>
           <div className="flex items-center justify-center my-4">
-            <Link to={"/all-books"}>
+            <Link to={"/books"}>
               <Button className="">Show All Book</Button>
             </Link>
           </div>

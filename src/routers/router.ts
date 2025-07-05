@@ -19,19 +19,23 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/all-books",
+        path: "/books",
         Component: AllBooks,
       },
       {
-        path: "/all-books/:bookId",
+        path: "/books/:bookId",
         Component: BookDetails,
       },
       {
         path: "/create-book",
         Component: AddBook,
       },
+      // {
+      //   path: "/edit-book/:bookId",
+      //   Component: UpdateBook,
+      // },
       {
-        path: "/borrowSummary",
+        path: "/borrow-summary",
         Component: BorrowSummary,
       },
       {
@@ -42,3 +46,10 @@ const router = createBrowserRouter([
   },
 ]);
 export default router;
+
+// /books – Displays a list of all books with options to view, edit, delete, and borrow.
+// /create-book – Form interface to add a new book to the system.
+// /books/:id – Detailed view of a single book’s information.
+// /edit-book/:id – Interface to update an existing book’s details.
+// /borrow/:bookId – Form to borrow a selected book.
+// /borrow-summary – Displays an aggregated summary of all borrowed books.
